@@ -15,3 +15,12 @@ add_action(
 		);
 	}
 );
+
+add_action(
+	'pre_get_users',
+	function( $query ) {
+		if ( 'admin_box' === $query->get( 'p2p:context' ) ) {
+			$query->set( 'fields', [ 'id', 'display_name' ] );
+		}
+	}
+);
